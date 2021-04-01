@@ -23,7 +23,7 @@ public class AdminLoginTest {
     }
 
     @Test
-    public void adminLoginTest() throws Exception {
+    public void adminLoginTest() {
         driver.navigate().to("http://127.0.0.1/litecart/admin");
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
