@@ -7,4 +7,9 @@
       <module name="seleniumTests_test" target="15" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="test_Baranchik_B23.seleniumTests.test" options="--add-exports java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED" />
+    </option>
+  </component>
 </project>
