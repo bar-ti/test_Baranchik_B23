@@ -38,7 +38,7 @@ public class CheckStickerTest {
            Assert.assertTrue(driver.findElement(By.xpath("//div[@id='box-most-popular']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).isDisplayed());
          }
         products = driver.findElements(By.xpath("//div[@id='box-campaigns']//li/a[@class='link']"));
-        productsList = new ArrayList<>();
+        productsList.clear();
         for (WebElement product : products) {
             productsList.add(product.getAttribute("href"));
         }
@@ -47,7 +47,7 @@ public class CheckStickerTest {
             Assert.assertTrue(driver.findElement(By.xpath("//div[@id='box-campaigns']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).isDisplayed());
         }
         products = driver.findElements(By.xpath("//div[@id='box-latest-products']//li/a[@class='link']"));
-        productsList = new ArrayList<>();
+        productsList.clear();
         for (WebElement product : products) {
             productsList.add(product.getAttribute("href"));
         }
