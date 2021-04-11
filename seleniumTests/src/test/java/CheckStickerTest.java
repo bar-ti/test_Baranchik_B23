@@ -43,8 +43,8 @@ public class CheckStickerTest {
             productsList.add(product.getAttribute("href"));
         }
         for (String productLink : productsList) {
-            Assert.assertEquals(driver.findElements(By.xpath("//div[@id='box-most-popular']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).size(),1);
-            Assert.assertTrue(driver.findElement(By.xpath("//div[@id='box-most-popular']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).isDisplayed());
+            Assert.assertEquals(driver.findElements(By.xpath("//div[@id='box-campaigns']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).size(),1);
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@id='box-campaigns']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).isDisplayed());
         }
         products = driver.findElements(By.xpath("//div[@id='box-latest-products']//li/a[@class='link']"));
         productsList = new ArrayList<>();
@@ -52,8 +52,8 @@ public class CheckStickerTest {
             productsList.add(product.getAttribute("href"));
         }
         for (String productLink : productsList) {
-            Assert.assertEquals(driver.findElements(By.xpath("//div[@id='box-most-popular']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).size(),1);
-            Assert.assertTrue(driver.findElement(By.xpath("//div[@id='box-most-popular']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).isDisplayed());
+            Assert.assertEquals(driver.findElements(By.xpath("//div[@id='box-latest-products']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).size(),1);
+            Assert.assertTrue(driver.findElement(By.xpath("//div[@id='box-latest-products']//a[@href='"+productLink+"']//div[contains(@class,'sticker')]")).isDisplayed());
         }
     }
 
