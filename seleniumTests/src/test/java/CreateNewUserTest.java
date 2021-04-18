@@ -1,13 +1,11 @@
 import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static java.lang.Thread.sleep;
@@ -32,7 +30,7 @@ public class CreateNewUserTest {
         optionsIE.ignoreZoomSettings();
         driver = new InternetExplorerDriver(optionsIE);
         wait = new WebDriverWait(driver, 10);
-        createNewUser(driver, true);
+        createNewUser(driver, false);
     }
 
     @Test
@@ -52,15 +50,11 @@ public class CreateNewUserTest {
         driver.findElement(By.name("address1")).sendKeys("user address");
         driver.findElement(By.name("postcode")).sendKeys("12345");
         driver.findElement(By.name("city")).sendKeys("user city");
-        Select select = new Select(driver.findElement(By.xpath("//select[@name='country_code']")));
-        if (isIE)
-            select.selectByVisibleText("United States");
-        else
-            ((JavascriptExecutor) driver).executeScript(
-                    "arguments[0].selectedIndex = 224; arguments[0].dispatchEvent(new Event('change'))", select);
-        select.selectByVisibleText("United States");
+        driver.findElement(By.xpath("//span[@class='select2-selection select2-selection--single']")).click();
+        driver.findElement(By.xpath("//input[@class='select2-search__field']")).sendKeys("United States");
+        driver.findElement(By.xpath("//li[text()='United States']")).click();
         int random_number = 1 + (int) (Math.random() * 100);
-        driver.findElement(By.name("email")).sendKeys("test" + String.valueOf(random_number) + "@test.ru");
+        driver.findElement(By.name("email")).sendKeys("test" + random_number + "@test.ru");
         driver.findElement(By.name("phone")).sendKeys("+10000000000");
         driver.findElement(By.name("password")).sendKeys("123");
         driver.findElement(By.name("confirmed_password")).sendKeys("123");
