@@ -20,7 +20,7 @@ public class CreateNewUserTest {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromedriver.exe");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
-        createNewUser(driver, false);
+        createNewUser(driver);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class CreateNewUserTest {
         optionsIE.ignoreZoomSettings();
         driver = new InternetExplorerDriver(optionsIE);
         wait = new WebDriverWait(driver, 10);
-        createNewUser(driver, false);
+        createNewUser(driver);
     }
 
     @Test
@@ -38,10 +38,10 @@ public class CreateNewUserTest {
         System.setProperty("webdriver.gecko.driver", "src/test/resources/driver/geckodriver.exe");
         driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 10);
-        createNewUser(driver, false);
+        createNewUser(driver);
     }
 
-    public void createNewUser(WebDriver driver, boolean isIE) throws InterruptedException {
+    public void createNewUser(WebDriver driver) throws InterruptedException {
         driver.navigate().to("http://127.0.0.1/litecart");
         driver.findElement(By.xpath("//a[contains(text(),'New customers click here')]")).click();
         sleep(1000);
