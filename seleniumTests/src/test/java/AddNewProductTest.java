@@ -3,6 +3,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,15 +19,33 @@ public class AddNewProductTest {
     public WebDriver driver;
     public WebDriverWait wait;
 
-    @Before
-    public void start() {
+    @Test
+    public void browserChromeTest() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromedriver.exe");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
+        addNewProduct(driver);
     }
 
     @Test
-    public void addNewProductTest() throws InterruptedException {
+    public void browserIETest() throws InterruptedException {
+        System.setProperty("webdriver.ie.driver", "src/test/resources/driver/IEDriverServer.exe");
+        InternetExplorerOptions optionsIE = new InternetExplorerOptions();
+        optionsIE.ignoreZoomSettings();
+        driver = new InternetExplorerDriver(optionsIE);
+        wait = new WebDriverWait(driver, 10);
+        addNewProduct(driver);
+    }
+
+    @Test
+    public void browserFirefoxTest() throws InterruptedException {
+        System.setProperty("webdriver.gecko.driver", "src/test/resources/driver/geckodriver.exe");
+        driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 10);
+        addNewProduct(driver);
+    }
+
+    public void addNewProduct(WebDriver driver) throws InterruptedException {
         driver.navigate().to("http://127.0.0.1/litecart/admin");
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
@@ -39,7 +60,6 @@ public class AddNewProductTest {
         sleep(500);
         driver.findElement(By.name("name[en]")).sendKeys("testDuck");
         driver.findElement(By.name("code")).sendKeys("testCode");
-        driver.findElement(By.xpath("//*[@data-name='Rubber Ducks']")).click();
         driver.findElement(By.xpath("//strong[text()='Product Groups']/parent::td//*[text()='Unisex']/parent::tr//input")).click();
         File file = new File("src\\test\\resources\\img\\PNG format.png");
         driver.findElement(By.name("new_images[]")).sendKeys(file.getAbsolutePath());
