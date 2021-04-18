@@ -24,7 +24,7 @@ public class AddNewProductTest {
     }
 
     @Test
-    public void adminLoginTest() throws InterruptedException {
+    public void addNewProductTest() throws InterruptedException {
         driver.navigate().to("http://127.0.0.1/litecart/admin");
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
